@@ -60,7 +60,23 @@ PDF → 提取表格坐标 → 渲染高清PNG → 分析论文结构
 | `/paper-to-beamer [pdf]` | 完整流程：PDF → Beamer PPT（交互选择页数） |
 | `/paper-to-beamer [pdf] [N]` | 直接指定页数，如 `paper.pdf 12` |
 | `/beamer-overflow-fix [file]` | 修复编译后的溢出警告 |
+| `/compile-latex [file]` | 3-pass XeLaTeX编译 |
+| `/proofread [file]` | 语法/拼写/学术写作审查 |
 | `/auto-publish [msg]` | 自动发布到GitHub并更新README/Pages |
+| `/context-status` | 查看上下文使用情况 |
+| `/learn [skill-name]` | 提取学习经验为持久化技能 |
+
+## 质量控制
+
+```bash
+# 对生成的 .tex 文件打分（0-100）
+python scripts/quality_score.py Slides/your_file.tex
+
+# 质量门槛
+# 80/100 - 可以 commit
+# 90/100 - 可以发 PR
+# 95/100 - 卓越
+```
 
 ## License
 
