@@ -1,0 +1,25 @@
+% Nankai University Beamer Setup
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}  % Chinese font support
+
+% Custom color definitions
+\definecolor{nankaiPurple}{RGB}{126,12,110}
+\definecolor{nankaiGold}{RGB}{242,169,0}
+
+% Set Nankai colors for Beamer theme
+\setbeamercolor{structure}{fg=nankaiPurple}
+\setbeamercolor{palette primary}{bg=nankaiPurple,fg=white}
+\setbeamercolor{palette secondary}{bg=nankaiGold,fg=white}
+
+% Custom environments
+\newenvironment{resultbox}{\begin{beamercolorbox}[rounded=true,shadow=true]{block body}}{\end{beamercolorbox}}
+\newenvironment{methodbox}{\begin{beamercolorbox}[rounded=true,shadow=true]{block body example}}{\end{beamercolorbox}}
+\newenvironment{highlightbox}{\begin{beamercolorbox}[rounded=true]{block body alerted}}{\end{beamercolorbox}}
+
+% Additional packages commonly used in academic presentations
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,arrows}

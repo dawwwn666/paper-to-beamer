@@ -1,0 +1,38 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.synctex.gz
+*.run.xml
+*-blx.bib
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code local
+.claude/settings.local.json
+.claude/state/
+
+# IDE
+.vscode/
+.idea/
+
+# Papers: PDFs not committed (copyright)
+Papers/*.pdf
+
+# Temporary render PNGs (regenerated on demand)
+Figures/*/page-*.png
+Figures/*/page*_*.png
