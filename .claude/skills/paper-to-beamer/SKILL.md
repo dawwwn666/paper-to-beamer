@@ -34,9 +34,9 @@ Confirm the file exists. If not found, list available PDFs and ask the user to c
 If no slide count is given in `$ARGUMENTS`, ask the user:
 
 > 您希望生成多少页幻灯片？
-> - 精简版（8-10页）：适合15分钟报告
-> - 标准版（12-15页）：适合20-30分钟报告
-> - 详细版（18-20页）：适合45分钟以上报告
+> - 精简版（12-15页）：适合20-30分钟报告
+> - 标准版（23-25页）：适合45分钟报告
+> - 详细版（33-35页）：适合60分钟以上报告
 > - 自定义：请输入具体页数
 
 Use the answer to determine the slide count target (`TARGET_SLIDES`).
@@ -45,9 +45,9 @@ Use the answer to determine the slide count target (`TARGET_SLIDES`).
 
 | Target | Slides | Coverage |
 |--------|--------|---------|
-| 精简版 | 8-10 | 动机、数据、主要结果、结论 |
-| 标准版 | 12-15 | 上述 + 文献、识别策略、稳健性 |
-| 详细版 | 18-20 | 上述 + 机制、异质性、政策含义 |
+| 精简版 | 12-15 | 动机、数据、主要结果、结论 |
+| 标准版 | 23-25 | 上述 + 文献、识别策略、稳健性、机制 |
+| 详细版 | 33-35 | 上述 + 异质性、政策含义、附录 |
 
 ### 3. Extract Tables with pdfplumber
 
