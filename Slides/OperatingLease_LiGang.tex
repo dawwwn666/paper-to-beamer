@@ -1,0 +1,191 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+\usetheme{NankaiBeamer}
+
+% Custom box environments
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\newenvironment{resultbox}{\begin{tcolorbox}[colframe=nankai,colback=nankai!5,fonttitle=\bfseries]}{\end{tcolorbox}}
+\newenvironment{methodbox}{\begin{tcolorbox}[colframe=orange!80!black,colback=orange!5,fonttitle=\bfseries]}{\end{tcolorbox}}
+\newenvironment{highlightbox}{\begin{tcolorbox}[colframe=nankai!40,colback=nankai!8]}{\end{tcolorbox}}
+
+\title{经营租赁的真实动机}
+\subtitle{基于东方航空公司的案例研究}
+\author{李刚 \quad 王雪 \quad 朱武祥 \quad 张帆 \\[4pt]
+\small 《管理世界》2009年}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% -------------------------------------------------------
+\begin{frame}{研究问题}
+\begin{itemize}
+  \item 经营租赁在会计准则下\textbf{不计入资产负债表}，被视为"表外融资"
+  \item 现有文献对经营租赁动机的解释：税收优势、信息不对称、降低破产成本
+  \item \textbf{本文问题：} 东方航空大量使用经营租赁飞机，真实动机是什么？
+\end{itemize}
+
+\begin{resultbox}
+核心发现：东方航空将经营租赁飞机确认为一种\textbf{短期性高债务}，
+通过时间结构操纵资产负债率，掩盖真实财务杠杆水平。
+\end{resultbox}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{文献综述}
+\begin{columns}[T]
+\column{0.48\textwidth}
+\textbf{支持经营租赁的理论}
+\begin{itemize}
+  \item 税收优势（Smith \& Wakeman 1985）
+  \item 降低破产成本（Altman 1968）
+  \item 缓解信息不对称（Sharpe \& Nguyen 1995）
+  \item 减少代理成本
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{本文的贡献}
+\begin{itemize}
+  \item 首次以\textbf{单一公司时间序列}为研究对象
+  \item 精确识别经营租赁的真实会计动机
+  \item 揭示准则漏洞对投资者信息的误导
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{研究对象：东方航空公司}
+\begin{columns}[T]
+\column{0.55\textwidth}
+\begin{itemize}
+  \item 中国三大航空公司之一，上市于A、B、H、N股
+  \item 1998--2005年经营租赁飞机31架
+  \item 租赁期限4--12年，约占飞机使用寿命20\%--60\%
+  \item 按国际会计准则（IAS 17）披露租赁信息
+\end{itemize}
+
+\column{0.42\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab2_listing.png}
+  \caption{\small 东方航空上市情况}
+\end{figure}
+\end{columns}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{数据：经营租赁飞机明细}
+\begin{figure}
+  \includegraphics[width=0.82\textwidth,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab3_incremental.png}
+\end{figure}
+\begin{itemize}
+  \item \small 1998--2005年逐年新增/退出经营租赁飞机数量及租期结构
+\end{itemize}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{主要结果（一）：资产负债率变化}
+\begin{figure}
+  \includegraphics[width=0.80\textwidth,height=0.52\textheight,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab4_leverage.png}
+\end{figure}
+\begin{itemize}
+  \item \small 1999--2002年资产负债率持续下降；2003年后随租赁到期大幅回升
+  \item \small 与经营租赁飞机的时间结构高度吻合
+\end{itemize}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{主要结果（二）：与国泰航空对比}
+\begin{figure}
+  \includegraphics[width=0.80\textwidth,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab6_cea_cathay.png}
+\end{figure}
+\begin{itemize}
+  \item \small 东方航空资产负债率显著低于国泰航空，但还原经营租赁后差距消失
+\end{itemize}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{主要结果（三）：融资义务}
+\begin{figure}
+  \includegraphics[width=0.80\textwidth,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab8_financing.png}
+\end{figure}
+\begin{itemize}
+  \item \small 将未来最低租赁付款额折现后，实际债务水平大幅高于账面值
+\end{itemize}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{主要结果（四）：还原真实资产负债率}
+\begin{columns}[T]
+\column{0.50\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab12_ratios.png}
+  \caption{\small 还原后资产负债率}
+\end{figure}
+
+\column{0.47\textwidth}
+\begin{resultbox}
+还原经营租赁后：
+\begin{itemize}
+  \item 实际资产负债率\textbf{上升8--15个百分点}
+  \item 1999--2002年"下降"趋势\textbf{消失}
+  \item 真实财务杠杆水平被系统性低估
+\end{itemize}
+\end{resultbox}
+\end{columns}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{稳健性检验}
+\begin{columns}[T]
+\column{0.50\textwidth}
+\begin{figure}
+  \includegraphics[width=\textwidth,keepaspectratio]{../Figures/经营租赁的真实动机——基于东方航空公司的案例研究_李刚_tables/tab11_restatement.png}
+  \caption{\small 重述后财务数据}
+\end{figure}
+
+\column{0.47\textwidth}
+\begin{itemize}
+  \item 使用不同折现率（6\%、8\%、10\%）
+  \item 使用不同租赁资本化方法
+  \item 结论对参数选择不敏感
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{机制分析：为何选择经营租赁？}
+\begin{methodbox}
+时间结构操纵机制
+\end{methodbox}
+\begin{enumerate}
+  \item 将长期经营租赁飞机\textbf{确认为短期负债}（IAS 17漏洞）
+  \item 在特定年份集中到期，制造资产负债率"下降"假象
+  \item 投资者无法从公开财报中识别真实杠杆水平
+  \item 管理层借此\textbf{规避债务契约约束}，降低融资成本
+\end{enumerate}
+\end{frame}
+
+% -------------------------------------------------------
+\begin{frame}{结论与政策含义}
+\begin{itemize}
+  \item 东方航空经营租赁的\textbf{真实动机}：操纵资产负债率时间结构，而非税收或信息优势
+  \item 现行会计准则（IAS 17）存在\textbf{重大漏洞}，允许实质性融资租赁被归类为经营租赁
+  \item \textbf{政策建议：}
+    \begin{itemize}
+      \item 要求企业在财报中披露经营租赁资本化后的资产负债率
+      \item 投资者应还原表外负债后再评估企业财务健康度
+      \item 支持IASB推进租赁准则改革（后续演变为IFRS 16）
+    \end{itemize}
+\end{itemize}
+
+\begin{highlightbox}
+本文为后续IFRS 16（2019年实施，要求所有租赁上表）提供了早期实证依据。
+\end{highlightbox}
+\end{frame}
+
+\end{document}

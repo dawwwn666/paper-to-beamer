@@ -35,10 +35,11 @@ paper-to-beamer/
 ## 编译命令
 
 ```bash
-# 3-pass XeLaTeX（在项目根目录运行）
-cd Slides && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
+# 3-pass XeLaTeX（Windows用分号，Mac/Linux用冒号）
+cd Slides
+TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode file.tex
+TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode file.tex
+TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode file.tex
 ```
 
 ---

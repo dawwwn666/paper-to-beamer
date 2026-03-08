@@ -1,7 +1,7 @@
 ---
 name: paper-to-beamer
 description: Convert a research paper PDF into a Beamer presentation. Extracts tables, analyzes structure, generates .tex with NankaiBeamer theme, compiles, and fixes overflow.
-argument-hint: "[PDF filename in Papers/ directory]"
+argument-hint: "[PDF filename in Papers/ directory] [optional: number of slides, e.g. 10]"
 trigger-phrases: ["paper to beamer", "论文转PPT", "制作课堂展示", "从论文生成PPT", "paper to slides"]
 allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent"]
 ---
@@ -12,7 +12,12 @@ Convert a research paper PDF into a complete Beamer presentation using the Nanka
 
 ## Input
 
-`$ARGUMENTS` = PDF filename (with or without `.pdf` extension) located in `Papers/`
+`$ARGUMENTS` = `[PDF filename] [optional slide count]`
+
+Examples:
+- `/paper-to-beamer paper.pdf` → ask user for slide count
+- `/paper-to-beamer paper.pdf 15` → generate exactly 15 slides
+- `/paper-to-beamer paper.pdf 8-12` → generate 8 to 12 slides
 
 ## Steps
 
@@ -24,84 +29,49 @@ ls Papers/
 
 Confirm the file exists. If not found, list available PDFs and ask the user to clarify.
 
-### 2. Extract Tables with pdfplumber
+### 2. Ask for Slide Count (if not provided)
 
-Run the table extraction script:
+If no slide count is given in `$ARGUMENTS`, ask the user:
 
-```bash
-python scripts/extract_tables.py "Papers/$ARGUMENTS"
-```
+> 您希望生成多少页幻灯片？
+> - 精简版（8-10页）：适合15分钟报告
+> - 标准版（12-15页）：适合20-30分钟报告
+> - 详细版（18-20页）：适合45分钟以上报告
+> - 自定义：请输入具体页数
 
-If `scripts/extract_tables.py` does not exist, create it inline:
+Use the answer to determine the slide count target (`TARGET_SLIDES`).
 
-```python
-import pdfplumber
-import json
-import sys
-import os
+**Slide count guidelines:**
 
-pdf_path = sys.argv[1]
-base = os.path.splitext(os.path.basename(pdf_path))[0]
-out_dir = f"Figures/{base}_tables"
-os.makedirs(out_dir, exist_ok=True)
+| Target | Slides | Coverage |
+|--------|--------|---------|
+| 精简版 | 8-10 | 动机、数据、主要结果、结论 |
+| 标准版 | 12-15 | 上述 + 文献、识别策略、稳健性 |
+| 详细版 | 18-20 | 上述 + 机制、异质性、政策含义 |
 
-results = []
-with pdfplumber.open(pdf_path) as pdf:
-    for i, page in enumerate(pdf.pages):
-        tables = page.find_tables()
-        for j, table in enumerate(tables):
-            bbox = table.bbox  # (x0, y0, x1, y1)
-            data = table.extract()
-            results.append({
-                "page": i + 1,
-                "table_index": j,
-                "bbox": bbox,
-                "rows": len(data) if data else 0,
-                "cols": len(data[0]) if data and data[0] else 0,
-                "preview": data[:3] if data else []
-            })
-
-out_file = f"{out_dir}/tables.json"
-with open(out_file, "w", encoding="utf-8") as f:
-    json.dump(results, f, ensure_ascii=False, indent=2)
-
-print(f"Found {len(results)} tables. Saved to {out_file}")
-for r in results:
-    print(f"  Page {r['page']}, Table {r['table_index']}: {r['rows']}x{r['cols']} at {r['bbox']}")
-```
-
-### 3. Render High-Resolution PNGs
-
-For each page containing a table, render a PNG:
+### 3. Extract Tables with pdfplumber
 
 ```bash
-pdftoppm -r 200 -png "Papers/$ARGUMENTS" "Figures/${BASE}_tables/page"
+python scripts/extract_tables.py "Papers/[FILENAME]"
 ```
 
-Then crop each table region using the bounding boxes from Step 2.
+### 4. Render High-Resolution PNGs
 
-If `pdftoppm` is unavailable, use `pdf2image` (Python):
-
-```python
-from pdf2image import convert_from_path
-pages = convert_from_path("Papers/file.pdf", dpi=200)
-for i, page in enumerate(pages):
-    page.save(f"Figures/base_tables/page-{i+1}.png")
+```bash
+python scripts/render_pages.py "Papers/[FILENAME]" 200
 ```
 
-### 4. Analyze Paper Structure
+### 5. Analyze Paper Structure
 
 Read the PDF text to identify:
-- **Title, authors, journal/year**
-- **Abstract** (1-2 key sentences)
-- **Research question / hypothesis**
-- **Data and sample** (N, time period, geography)
-- **Identification strategy** (IV, DiD, RD, etc.)
-- **Main results** (sign, magnitude, significance)
-- **Robustness checks**
-- **Conclusion / policy implications**
-
-Use pdfplumber for text extraction:
+- Title, authors, journal/year
+- Abstract (1-2 key sentences)
+- Research question / hypothesis
+- Data and sample
+- Identification strategy
+- Main results
+- Robustness checks
+- Conclusion / policy implications
 
 ```python
 import pdfplumber
@@ -110,95 +80,86 @@ with pdfplumber.open("Papers/file.pdf") as pdf:
 print(text[:3000])
 ```
 
-### 5. Plan the Slide Deck
+### 6. Plan the Slide Deck
 
-Based on the analysis, plan a 12-20 slide deck:
+Based on `TARGET_SLIDES`, select which sections to include:
 
-| Slide | Content |
-|-------|---------|
-| 1 | Title slide |
-| 2 | Motivation / Research Question |
-| 3 | Literature Position |
-| 4 | Data & Sample |
-| 5 | Identification Strategy |
-| 6-8 | Main Results (tables/figures) |
-| 9-10 | Robustness Checks |
-| 11 | Mechanism / Heterogeneity |
-| 12 | Conclusion |
+**Always include (core):**
+1. Title slide
+2. Research question / motivation
+3. Data & sample
+4. Main results (1-3 slides depending on target)
+5. Conclusion
 
-### 6. Generate Beamer .tex File
+**Add for standard/detailed:**
+- Literature position
+- Identification strategy
+- Robustness checks
+
+**Add for detailed only:**
+- Mechanism / heterogeneity
+- Policy implications
+- Additional results
+
+### 7. Generate Beamer .tex File
 
 Create `Slides/[BASENAME].tex` using the NankaiBeamer theme:
 
 ```latex
 \documentclass[aspectratio=169]{beamer}
-\usepackage{../Preambles/nankai-header}
-% or: \usetheme{NankaiBeamer} if NankaiBeamer.sty is available
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+\usetheme{NankaiBeamer}
+
+% Custom box environments
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\newenvironment{resultbox}{\begin{tcolorbox}[colframe=nankai,colback=nankai!5]}{\end{tcolorbox}}
+\newenvironment{methodbox}{\begin{tcolorbox}[colframe=orange!80!black,colback=orange!5]}{\end{tcolorbox}}
+\newenvironment{highlightbox}{\begin{tcolorbox}[colframe=nankai!40,colback=nankai!8]}{\end{tcolorbox}}
 
 \title{[Paper Title]}
 \subtitle{[Journal, Year]}
-\author{[Authors] \\ \small Presented by [Your Name]}
+\author{[Authors]}
 \date{\today}
 
 \begin{document}
 \maketitle
-
-% --- Motivation ---
-\begin{frame}{Research Question}
-...
-\end{frame}
-
-% --- Data ---
-\begin{frame}{Data \& Sample}
-...
-\end{frame}
-
-% --- Main Results ---
-\begin{frame}{Main Results}
-\begin{figure}
-  \includegraphics[width=0.85\textwidth,keepaspectratio]{../Figures/[BASE]_tables/table1_crop.png}
-\end{figure}
-\end{frame}
-
-% ... more slides ...
-
+% ... slides ...
 \end{document}
 ```
 
 **Rules for table slides:**
-- Use `\includegraphics[width=0.85\textwidth,keepaspectratio]{...}` for cropped table images
-- Never paste raw LaTeX tables from the paper (formatting will break)
-- Add 1-2 bullet points below each table explaining the key finding
+- Use `\includegraphics[width=0.85\textwidth,height=0.55\textheight,keepaspectratio]{...}` for table images
+- Add 1-2 bullet points explaining the key finding
 
 **Rules for text slides:**
 - Max 5 bullet points per slide
 - Use `\small` for dense content
-- Use `resultbox`, `methodbox`, `definitionbox` environments for key findings
 
-### 7. Compile (3-pass XeLaTeX)
+### 8. Compile (on Windows use semicolon path separator)
 
 ```bash
 cd Slides
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode [BASENAME].tex
-BIBINPUTS=..:$BIBINPUTS bibtex [BASENAME]
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode [BASENAME].tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode [BASENAME].tex
+TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode [BASENAME].tex
+TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode [BASENAME].tex
+TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode [BASENAME].tex
 ```
 
-### 8. Check for Overflow
-
-Parse the `.log` file:
+### 9. Check and Fix Overflow
 
 ```bash
-grep -n "Overfull" Slides/[BASENAME].log | head -30
+grep "Overfull" Slides/[BASENAME].log
 ```
 
 If overflow warnings exist, invoke `/beamer-overflow-fix [BASENAME].tex` automatically.
 
-### 9. Present Results
+### 10. Present Results
 
 Report:
-- Number of slides generated
+- Number of slides generated (vs. target)
 - Tables extracted and included
 - Any overflow issues found and fixed
 - Path to compiled PDF: `Slides/[BASENAME].pdf`
@@ -208,14 +169,13 @@ Report:
 | Error | Action |
 |-------|--------|
 | `pdfplumber` not installed | `pip install pdfplumber` |
-| `pdftoppm` not found | Use `pdf2image` fallback |
-| NankaiBeamer.sty missing | Fall back to `\usetheme{Madrid}` and note the limitation |
+| `pdf2image` not installed | `pip install pdf2image` |
+| `\kaishu` undefined | Add `\providecommand{\kaishu}{\rmfamily}` to theme file |
+| NankaiBeamer.sty missing | Fall back to `\usetheme{Madrid}` |
 | Compilation fails | Read first 50 lines of `.log`, fix the error, retry |
-| No tables found | Proceed with text-only slides, note in summary |
 
 ## Output
 
 - `Slides/[BASENAME].tex` — Beamer source
 - `Slides/[BASENAME].pdf` — Compiled presentation
 - `Figures/[BASENAME]_tables/` — Cropped table images
-- `Figures/[BASENAME]_tables/tables.json` — Table metadata
