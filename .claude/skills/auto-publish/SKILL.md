@@ -69,8 +69,6 @@ git diff --stat
 <body>
 - 详细改动1
 - 详细改动2
-
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
 
 **示例：**
@@ -81,8 +79,6 @@ feat(skill): Add auto-publish skill for GitHub workflow
 - Generate semantic commit messages
 - Sync updates to README and GitHub Pages
 - Support manual trigger via /auto-publish
-
-Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
 
 ### 4. 提取关键更新（用于README/Pages）

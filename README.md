@@ -55,14 +55,29 @@ PDF → 提取表格坐标 → 渲染高清PNG → 分析论文结构
 
 ## 技能
 
+### 主要命令
+
 | 命令 | 功能 |
 |------|------|
 | `/paper-to-beamer [pdf]` | 完整流程：PDF → Beamer PPT（交互选择页数） |
 | `/paper-to-beamer [pdf] [N]` | 直接指定页数，如 `paper.pdf 12` |
-| `/beamer-overflow-fix [file]` | 修复编译后的溢出警告 |
-| `/compile-latex [file]` | 3-pass XeLaTeX编译 |
-| `/proofread [file]` | 语法/拼写/学术写作审查 |
 | `/auto-publish [msg]` | 自动发布到GitHub并更新README/Pages |
+
+### 自动化流程（无需手动调用）
+
+运行 `/paper-to-beamer` 时，以下步骤自动执行：
+
+| 步骤 | 说明 |
+|------|------|
+| 编译 | 自动调用 `/compile-latex` 进行3-pass编译 |
+| 溢出修复 | 自动调用 `/beamer-overflow-fix` 修复警告 |
+| 质量打分 | 自动运行 `quality_score.py` 评分（0-100） |
+| 语法审查 | 分数<90时自动调用 `/proofread` 检查 |
+
+### 辅助命令
+
+| 命令 | 功能 |
+|------|------|
 | `/context-status` | 查看上下文使用情况 |
 | `/learn [skill-name]` | 提取学习经验为持久化技能 |
 

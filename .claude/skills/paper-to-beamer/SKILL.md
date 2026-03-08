@@ -139,30 +139,49 @@ Create `Slides/[BASENAME].tex` using the NankaiBeamer theme:
 - Max 5 bullet points per slide
 - Use `\small` for dense content
 
-### 8. Compile (on Windows use semicolon path separator)
+### 8. Compile (automatically via /compile-latex)
 
+Invoke `/compile-latex [BASENAME]` which handles:
+- 3-pass XeLaTeX compilation
+- Windows/Mac path separator detection
+- Error reporting
+
+### 9. Check and Fix Overflow (automatically)
+
+After compilation, automatically invoke `/beamer-overflow-fix [BASENAME].tex` if overflow warnings exist.
+
+### 10. Quality Scoring (automatically)
+
+Run quality check:
 ```bash
-cd Slides
-TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode [BASENAME].tex
-TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode [BASENAME].tex
-TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode [BASENAME].tex
+python scripts/quality_score.py Slides/[BASENAME].tex --summary
 ```
 
-### 9. Check and Fix Overflow
+Report the score. If score < 80, list critical issues and offer to fix.
 
-```bash
-grep "Overfull" Slides/[BASENAME].log
-```
+### 11. Proofread (automatically if score < 90)
 
-If overflow warnings exist, invoke `/beamer-overflow-fix [BASENAME].tex` automatically.
+If quality score is below 90, automatically invoke `/proofread [BASENAME].tex` to check:
+- Grammar and typos
+- Academic writing quality
+- Notation consistency
 
-### 10. Present Results
+Apply fixes if user approves.
+
+### 12. Present Results
 
 Report:
 - Number of slides generated (vs. target)
 - Tables extracted and included
-- Any overflow issues found and fixed
+- Quality score: [N]/100 ([GATE])
+- Any issues found and fixed
 - Path to compiled PDF: `Slides/[BASENAME].pdf`
+
+**Quality Gates:**
+- 95-100: EXCELLENCE ⭐
+- 90-94: PR-ready ✓
+- 80-89: Commit-ready
+- <80: Needs improvement (list issues)
 
 ## Error Handling
 

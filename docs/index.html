@@ -58,12 +58,17 @@
     <tr><th>命令</th><th>功能</th></tr>
     <tr><td><code>/paper-to-beamer [pdf]</code></td><td>完整流程：PDF → Beamer PPT，交互选择页数</td></tr>
     <tr><td><code>/paper-to-beamer [pdf] [N]</code></td><td>直接指定页数，如 <code>paper.pdf 12</code></td></tr>
-    <tr><td><code>/beamer-overflow-fix [file]</code></td><td>修复编译后的溢出警告</td></tr>
-    <tr><td><code>/compile-latex [file]</code></td><td>3-pass XeLaTeX编译</td></tr>
-    <tr><td><code>/proofread [file]</code></td><td>语法/拼写/学术写作审查</td></tr>
     <tr><td><code>/auto-publish [msg]</code></td><td>自动发布到GitHub并更新README/Pages</td></tr>
-    <tr><td><code>/context-status</code></td><td>查看上下文使用情况</td></tr>
-    <tr><td><code>/learn [skill-name]</code></td><td>提取学习经验为持久化技能</td></tr>
+</table>
+
+<h2>自动化流程</h2>
+<p>运行 <code>/paper-to-beamer</code> 时，以下步骤自动执行：</p>
+<table>
+    <tr><th>步骤</th><th>说明</th></tr>
+    <tr><td>编译</td><td>自动调用 <code>/compile-latex</code> 进行3-pass编译</td></tr>
+    <tr><td>溢出修复</td><td>自动调用 <code>/beamer-overflow-fix</code> 修复警告</td></tr>
+    <tr><td>质量打分</td><td>自动运行 <code>quality_score.py</code> 评分（0-100）</td></tr>
+    <tr><td>语法审查</td><td>分数&lt;90时自动调用 <code>/proofread</code> 检查</td></tr>
 </table>
 
 <h2>质量控制</h2>
