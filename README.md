@@ -60,6 +60,7 @@ PDF → 提取表格坐标 → 渲染高清PNG → 分析论文结构
 | `/paper-to-beamer [pdf]` | 完整流程：PDF → Beamer PPT（交互选择页数） |
 | `/paper-to-beamer [pdf] [N]` | 直接指定页数，如 `paper.pdf 12` |
 | `/beamer-overflow-fix [file]` | 修复编译后的溢出警告 |
+| `/auto-publish [msg]` | 自动发布到GitHub并更新README/Pages |
 
 ## License
 
