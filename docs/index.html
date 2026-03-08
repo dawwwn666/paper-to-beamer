@@ -56,8 +56,18 @@
 <h2>技能</h2>
 <table>
     <tr><th>命令</th><th>功能</th></tr>
-    <tr><td><code>/paper-to-beamer [pdf]</code></td><td>完整流程：PDF → Beamer PPT</td></tr>
+    <tr><td><code>/paper-to-beamer [pdf]</code></td><td>完整流程：PDF → Beamer PPT，交互选择页数</td></tr>
+    <tr><td><code>/paper-to-beamer [pdf] [N]</code></td><td>直接指定页数，如 <code>paper.pdf 12</code></td></tr>
     <tr><td><code>/beamer-overflow-fix [file]</code></td><td>修复编译后的溢出警告</td></tr>
+</table>
+
+<h2>页数选择</h2>
+<table>
+    <tr><th>选项</th><th>页数</th><th>适合场合</th></tr>
+    <tr><td>精简版</td><td>8–10页</td><td>15分钟报告：动机、数据、主要结果、结论</td></tr>
+    <tr><td>标准版</td><td>12–15页</td><td>20–30分钟报告：加文献、识别策略、稳健性</td></tr>
+    <tr><td>详细版</td><td>18–20页</td><td>45分钟以上：加机制、异质性、政策含义</td></tr>
+    <tr><td>自定义</td><td>任意</td><td>命令行直接指定页数</td></tr>
 </table>
 
 <h2>环境要求</h2>

@@ -27,6 +27,15 @@ claude
 /paper-to-beamer your_paper.pdf
 ```
 
+运行后会提示选择页数：
+
+| 选项 | 页数 | 适合场合 |
+|------|------|---------|
+| 精简版 | 8-10页 | 15分钟报告 |
+| 标准版 | 12-15页 | 20-30分钟报告 |
+| 详细版 | 18-20页 | 45分钟以上报告 |
+| 自定义 | 任意 | 直接指定，如 `/paper-to-beamer paper.pdf 12` |
+
 ## 工作流程
 
 ```
@@ -48,7 +57,8 @@ PDF → 提取表格坐标 → 渲染高清PNG → 分析论文结构
 
 | 命令 | 功能 |
 |------|------|
-| `/paper-to-beamer [pdf]` | 完整流程：PDF → Beamer PPT |
+| `/paper-to-beamer [pdf]` | 完整流程：PDF → Beamer PPT（交互选择页数） |
+| `/paper-to-beamer [pdf] [N]` | 直接指定页数，如 `paper.pdf 12` |
 | `/beamer-overflow-fix [file]` | 修复编译后的溢出警告 |
 
 ## License
