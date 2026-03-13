@@ -6,9 +6,35 @@
 
 ### Demo展示
 
-**中文示例：** [OperatingLease_CEA_LiGang.pdf](demo/OperatingLease_CEA_LiGang.pdf)
+#### 中文示例：[OperatingLease_CEA_LiGang.pdf](demo/OperatingLease_CEA_LiGang.pdf)
 
-**英文示例：** [CAPM_Size_Factor.pdf](demo/CAPM_Size_Factor.pdf)
+<table>
+<tr>
+<td><img src="demo/screenshots/cn_page1.png" width="200"/><br/>封面</td>
+<td><img src="demo/screenshots/cn_page2.png" width="200"/><br/>目录</td>
+<td><img src="demo/screenshots/cn_page3.png" width="200"/><br/>内容页</td>
+</tr>
+<tr>
+<td><img src="demo/screenshots/cn_page10.png" width="200"/><br/>表格页</td>
+<td><img src="demo/screenshots/cn_page15.png" width="200"/><br/>尾页</td>
+<td></td>
+</tr>
+</table>
+
+#### 英文示例：[CAPM_Size_Factor.pdf](demo/CAPM_Size_Factor.pdf)
+
+<table>
+<tr>
+<td><img src="demo/screenshots/en_page1.png" width="200"/><br/>Title</td>
+<td><img src="demo/screenshots/en_page2.png" width="200"/><br/>Outline</td>
+<td><img src="demo/screenshots/en_page3.png" width="200"/><br/>Content</td>
+</tr>
+<tr>
+<td><img src="demo/screenshots/en_page18.png" width="200"/><br/>Table</td>
+<td><img src="demo/screenshots/en_page20.png" width="200"/><br/>Conclusion</td>
+<td></td>
+</tr>
+</table>
 
 ### 1. 安装依赖
 
