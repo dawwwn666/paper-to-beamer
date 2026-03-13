@@ -4,6 +4,12 @@
 
 ## 快速开始
 
+### Demo展示
+
+**中文示例：** [OperatingLease_CEA_LiGang.pdf](demo/OperatingLease_CEA_LiGang.pdf)
+
+**英文示例：** [CAPM_Size_Factor.pdf](demo/CAPM_Size_Factor.pdf)
+
 ### 1. 安装依赖
 
 ```bash
@@ -42,7 +48,7 @@ claude
 
 | 模式 | 说明 |
 |------|------|
-| 全自动 | 根据学术最佳实践自动生成（推荐） |
+| 全自动 | 根据学术pre规范自动生成（推荐） |
 | 个性化 | 多轮对话定制重点、风格、听众 |
 
 **3. 表格处理：**
@@ -57,11 +63,11 @@ claude
 
 ```
 PDF → 选择模式(自动/个性化) → 选择表格处理(自动/手动/文本)
-    → 提取表格 → 分析论文结构 → 应用学术最佳实践
+    → 提取表格 → 分析论文结构 → 应用学术pre规范
     → 生成Beamer .tex → XeLaTeX编译 → 溢出修复 → PDF输出
 ```
 
-**学术最佳实践：**
+**学术pre规范：**
 - Assertion-Evidence 方法（结论性标题）
 - 认知负荷优化（每页≤5要点）
 - 视觉层次（彩色框突出核心结果）
