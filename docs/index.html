@@ -44,14 +44,16 @@
 <h2>工作流程</h2>
 <div class="flow">
     <div class="box">PDF输入</div><div class="arr">→</div>
-    <div class="box">提取表格坐标</div><div class="arr">→</div>
-    <div class="box">渲染高清PNG</div><div class="arr">→</div>
-    <div class="box">分析论文结构</div><div class="arr">→</div>
-    <div class="box">生成Beamer .tex</div><div class="arr">→</div>
-    <div class="box">XeLaTeX编译</div><div class="arr">→</div>
-    <div class="box">溢出修复</div><div class="arr">→</div>
+    <div class="box">选择模式</div><div class="arr">→</div>
+    <div class="box">选择表格处理</div><div class="arr">→</div>
+    <div class="box">提取表格</div><div class="arr">→</div>
+    <div class="box">分析结构</div><div class="arr">→</div>
+    <div class="box">应用最佳实践</div><div class="arr">→</div>
+    <div class="box">生成.tex</div><div class="arr">→</div>
+    <div class="box">编译</div><div class="arr">→</div>
     <div class="box">✓ PDF输出</div>
 </div>
+<p><strong>学术最佳实践：</strong>Assertion-Evidence方法 · 认知负荷优化 · 视觉层次 · 经济学规范</p>
 
 <h2>技能</h2>
 <table>
@@ -84,6 +86,21 @@ python scripts/quality_score.py Slides/your_file.tex
     <tr><td>标准版</td><td>23–25页</td><td>45分钟报告：加文献、识别策略、稳健性、机制</td></tr>
     <tr><td>详细版</td><td>33–35页</td><td>60分钟以上：加异质性、政策含义、附录</td></tr>
     <tr><td>自定义</td><td>任意</td><td>命令行直接指定页数</td></tr>
+</table>
+
+<h2>生成模式</h2>
+<table>
+    <tr><th>模式</th><th>说明</th></tr>
+    <tr><td>全自动</td><td>根据学术最佳实践自动生成（推荐）</td></tr>
+    <tr><td>个性化</td><td>多轮对话定制重点、风格、听众</td></tr>
+</table>
+
+<h2>表格处理</h2>
+<table>
+    <tr><th>模式</th><th>说明</th></tr>
+    <tr><td>自动截图</td><td>pdfplumber + pdftoppm 自动提取</td></tr>
+    <tr><td>手动截图</td><td>系统提示页码，用户自己截图</td></tr>
+    <tr><td>纯文本</td><td>提取数据用 LaTeX 重新排版</td></tr>
 </table>
 
 <h2>环境要求</h2>
