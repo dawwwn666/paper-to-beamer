@@ -30,7 +30,7 @@
 <td><img src="demo/screenshots/en_page3.png" width="200"/><br/>Content</td>
 </tr>
 <tr>
-<td><img src="demo/screenshots/en_page18.png" width="200"/><br/>Table</td>
+<td><img src="demo/screenshots/en_page18.png" width="200"/><br/>Analysis</td>
 <td><img src="demo/screenshots/en_page20.png" width="200"/><br/>Conclusion</td>
 <td></td>
 </tr>
