@@ -25,13 +25,13 @@
 
 <table>
 <tr>
-<td><img src="demo/screenshots/en_page1.png" width="200"/><br/>Title</td>
+<td><img src="demo/screenshots/CAPM_page" width="200"/><br/>Title</td>
 <td><img src="demo/screenshots/en_page2.png" width="200"/><br/>Outline</td>
 <td><img src="demo/screenshots/en_page3.png" width="200"/><br/>Content</td>
 </tr>
 <tr>
 <td><img src="demo/screenshots/en_page18.png" width="200"/><br/>Analysis</td>
-<td><img src="demo/screenshots/en_page20.png" width="200"/><br/>Conclusion</td>
+<td><img src="demo/screenshots/CAPM_page_last" width="200"/><br/>end_page</td>
 <td></td>
 </tr>
 </table>
