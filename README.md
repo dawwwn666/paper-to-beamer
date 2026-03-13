@@ -26,7 +26,7 @@
 <table>
 <tr>
 <td><img src="demo/screenshots/CAPM_page.png" width="200"/><br/>Title</td>
-<td><img src="demo/screenshots/en_page2.png" width="200"/><br/>Outline</td>
+<td><img src="demo/screenshots/modal.png" width="200"/><br/>Model</td>
 <td><img src="demo/screenshots/en_page3.png" width="200"/><br/>Content</td>
 </tr>
 <tr>
