@@ -1,12 +1,12 @@
 # 南开大学论文汇报一键生成
 
-上传论文PDF，自动生成课堂展示Beamer PPT。目前仓库里放的是南开大学的beamer模板，其它大学或者其他运用场合可自行更换为其他beamer模板。
+上传论文PDF，自动生成课堂展示Beamer PPT。目前仓库里放的是南开大学的beamer模板(目前有两种风格的模板供选择），其它大学或者其他运用场合可自行更换为其他beamer模板。
 
 ## 快速开始
 
 ### Demo展示
 
-#### 中文示例：[OperatingLease_CEA_LiGang.pdf](demo/OperatingLease_CEA_LiGang.pdf)
+#### 中文文献示例（该中文文献用模板a)：[OperatingLease_CEA_LiGang.pdf](demo/OperatingLease_CEA_LiGang.pdf)
 
 <table>
 <tr>
@@ -21,7 +21,7 @@
 </tr>
 </table>
 
-#### 英文示例：[CAPM_Size_Factor.pdf](demo/CAPM_Size_Factor.pdf)
+#### 英文示例(使用作者自制的模板b）：[CAPM_Size_Factor.pdf](demo/CAPM_Size_Factor.pdf)
 
 <table>
 <tr>
