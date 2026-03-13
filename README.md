@@ -12,11 +12,11 @@
 <tr>
 <td><img src="demo/screenshots/cn_page1.png" width="200"/><br/>封面</td>
 <td><img src="demo/screenshots/cn_page2.png" width="200"/><br/>目录</td>
-<td><img src="demo/screenshots/cn_page3.png" width="200"/><br/>内容页</td>
+<td><img src="demo/screenshots/内容页.png" width="200"/><br/>内容页</td>
 </tr>
 <tr>
-<td><img src="demo/screenshots/cn_page10.png" width="200"/><br/>表格页</td>
-<td><img src="demo/screenshots/cn_page15.png" width="200"/><br/>尾页</td>
+<td><img src="demo/screenshots/表格页.png" width="200"/><br/>表格页</td>
+<td><img src="demo/screenshots/尾页.png" width="200"/><br/>尾页</td>
 <td></td>
 </tr>
 </table>
@@ -26,6 +26,11 @@
 <table>
 <tr>
 <td><img src="demo/screenshots/CAPM_page.png" width="200"/><br/>Title</td>
+<td><img src="demo/screenshots/en_page2.png" width="200"/><br/>Outline</td>
+<td><img src="demo/screenshots/en_page3.png" width="200"/><br/>Content</td>
+</tr>
+<tr>
+<td><img src="demo/screenshots/en_page18.png" width="200"/><br/>Analysis</td>
 <td><img src="demo/screenshots/CAPM_page_last.png" width="200"/><br/>Conclusion</td>
 <td></td>
 </tr>
