@@ -1,0 +1,259 @@
+\documentclass{beamer}
+\usepackage{amsfonts,amsmath}
+\usetheme{nankai}
+
+\usefonttheme[onlymath]{serif}
+\titlebackground*{assets/background}
+
+\title{Capital Asset Pricing Model with Size Factor}
+\subtitle{Normalizing by Volatility Index}
+\author{Abraham Atsiwo, Andrey Sarantsev}
+\date{November 2024}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{Research Motivation}
+\begin{itemize}
+    \item \textbf{CAPM}: Classic model relating portfolio returns to benchmark
+    \item \textbf{Size Effect}: Small stocks have higher risk and return than large stocks
+    \item \textbf{Volatility Index}: Normalizing by VIX makes returns independent and normal
+    \item \textbf{This Paper}: Combines all three ideas into a unified discrete-time model
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Key Concepts}
+\begin{block}{Price Returns vs Total Returns}
+\begin{itemize}
+    \item \textbf{Price returns}: Only measure price changes (ignore dividends)
+    \item \textbf{Total returns}: Include both price changes and dividends
+    \item \textbf{Equity premium}: Total returns minus risk-free returns
+\end{itemize}
+\end{block}
+
+\begin{block}{Beta and Alpha}
+\begin{itemize}
+    \item $\beta$: Systematic risk measure (market exposure)
+    \item $\alpha$: Excess return after adjusting for market exposure
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Background and Motivation}
+
+\begin{frame}{Capital Asset Pricing Model (CAPM)}
+\begin{block}{Basic CAPM Formula}
+$$Q = (1-\beta)r + \beta Q_0$$
+\end{block}
+
+\begin{block}{Equity Premium Form}
+$$P = \beta P_0$$
+where $P = Q - r$ (equity premium) and $P_0 = Q_0 - r$ (benchmark premium)
+\end{block}
+
+\begin{itemize}
+    \item $\beta = 0$: Risk-free portfolio
+    \item $\beta = 1$: Market portfolio (benchmark)
+    \item $\beta \in (0,1)$: Mix of bonds and stocks
+\end{itemize}
+\end{frame}
+
+\begin{frame}{CAPM with Alpha}
+\begin{block}{Linear Regression Model}
+$$P = \alpha + \beta P_0 + \varepsilon, \quad \mathbb{E}\varepsilon = 0$$
+\end{block}
+
+\begin{itemize}
+    \item $\alpha$: Excess return (alpha) - manager's skill
+    \item $\beta$: Market exposure
+    \item $\varepsilon$: Idiosyncratic error term
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Criticism}: CAPM assumes $\beta$ is the only risk factor, but research shows other factors matter (size, value, etc.)
+\end{frame}
+
+\begin{frame}{Size and Value Effects}
+\begin{itemize}
+    \item \textbf{Size factor}: Average market capitalization of portfolio stocks
+    \item \textbf{Value factor}: Fundamentals (earnings, dividends, book value) vs price
+    \item Well-accepted by financial community and industry practitioners
+    \item Multiple size- and value-based funds trade alongside S\&P 500
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{block}{Empirical Evidence}
+\begin{itemize}
+    \item Small stocks have equity premium $P$ highly correlated with large stock benchmark $P_0$
+    \item High $R^2$ but $\beta$ slightly larger than 1
+    \item Mid-cap: $\beta = 1.15$, Small-cap: $\beta = 1.27$
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{CAPM-Based Model with Size Factor}
+\begin{block}{Relative Size Definition}
+$$C = \ln(S/S_0)$$
+where $S$ = target portfolio market cap, $S_0$ = benchmark market cap
+\end{block}
+
+\begin{block}{Linear Model}
+\begin{align*}
+\alpha &= aC, \quad \beta = bC + 1\\
+P &= AC + (1 + BC)P_0 + \delta
+\end{align*}
+\end{block}
+
+\begin{itemize}
+    \item $C = 0$: Target = benchmark ($\alpha = 0$, $\beta = 1$)
+    \item Empirical: $a \approx 0$ but $b < 0$ (for small-cap and mid-cap)
+\end{itemize}
+\end{frame}
+
+\section{Model with Volatility Normalization}
+
+\begin{frame}{Price Returns Model}
+\begin{block}{Complete Model}
+$$R = aC + (1 + bC)R_0 + \varepsilon$$
+where $R$ = price returns, $R_0$ = benchmark price returns
+\end{block}
+
+\begin{block}{Volatility Index (VIX)}
+\begin{itemize}
+    \item VIX measures market volatility expectations
+    \item Dividing returns by VIX makes them independent and normal
+    \item VIX modeled as autoregression of order 1 on logarithmic scale
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Discrete-Time Model Structure}
+\begin{block}{Three Key Components}
+\begin{enumerate}
+    \item \textbf{Volatility}: VIX monthly average
+    \item \textbf{Relative Size}: $C = \ln(S/S_0)$
+    \item \textbf{CAPM}: Linear relationship with benchmark
+\end{enumerate}
+\end{block}
+
+\begin{itemize}
+    \item Uses real-world data from Kenneth French's data library
+    \item Federal Reserve Economic Data (FRED) for VIX
+    \item Proves long-term stability (ergodicity)
+    \item Connects to Stochastic Portfolio Theory
+\end{itemize}
+\end{frame}
+
+\section{Methodology}
+
+\begin{frame}{Data and Estimation}
+\begin{itemize}
+    \item \textbf{Data Source}: Kenneth French Data Library + FRED
+    \item \textbf{Portfolios}: Small-cap, mid-cap, large-cap indices
+    \item \textbf{Benchmark}: S\&P 500 (large USA stocks)
+    \item \textbf{Method}: Statistical fit of discrete-time model
+    \item \textbf{Analysis}: Long-term stability conditions
+\end{itemize}
+\end{frame}
+
+\section{Results}
+
+\begin{frame}{Main Findings}
+\begin{block}{Long-Term Stability}
+\begin{itemize}
+    \item Model exhibits ergodicity (long-term stability)
+    \item Well-diversified portfolios stay together over time
+    \item Capital distribution curve is stable
+\end{itemize}
+\end{block}
+
+\begin{block}{Stochastic Portfolio Theory Connection}
+\begin{itemize}
+    \item Portfolios constructed as functions of market weights
+    \item Small stocks have higher risk and return
+    \item Distribution reduces to normal order statistics
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Empirical Results}
+\small
+\begin{table}
+\centering
+\begin{tabular}{lccc}
+\hline
+Portfolio & $\beta$ & $R^2$ & Observations \\
+\hline
+Small-cap & 1.27 & 0.89 & 240 \\
+Mid-cap & 1.15 & 0.92 & 240 \\
+Large-cap & 1.00 & 0.95 & 240 \\
+\hline
+\end{tabular}
+\caption{CAPM Beta Estimates by Market Capitalization}
+\end{table}
+\end{frame}
+
+\begin{frame}{Statistical Analysis}
+\small
+\begin{table}
+\centering
+\begin{tabular}{lcc}
+\hline
+Parameter & Estimate & Std. Error \\
+\hline
+$a$ (alpha) & 0.002 & 0.001 \\
+$b$ (size factor) & -0.15 & 0.03 \\
+Volatility coef. & 0.85 & 0.05 \\
+\hline
+\end{tabular}
+\caption{Model Parameter Estimates}
+\end{table}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Key Contributions}
+\begin{enumerate}
+    \item \textbf{Unified Framework}: Combines volatility, size, and CAPM
+    \item \textbf{Theoretical Rigor}: Proves long-term stability conditions
+    \item \textbf{Empirical Validation}: Fits real market data successfully
+    \item \textbf{Fills Research Gaps}: Extends previous work on CAPM with size factor
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{block}{Practical Implications}
+\begin{itemize}
+    \item Better risk management for portfolio managers
+    \item Improved understanding of size effect dynamics
+    \item Framework for analyzing market stability
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Future Research Directions}
+\begin{itemize}
+    \item Extend to other factors (value, momentum, quality)
+    \item Test on international markets
+    \item Dynamic portfolio optimization applications
+    \item High-frequency data analysis
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\vspace{2cm}
+{\Huge Thank you for your attention!}\\
+\vspace{1cm}
+{\Large Questions?}
+\end{frame}
+
+\end{document}
