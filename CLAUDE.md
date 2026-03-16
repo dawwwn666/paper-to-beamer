@@ -50,3 +50,43 @@ TEXINPUTS="../Preambles;$TEXINPUTS" xelatex -interaction=nonstopmode file.tex
 |------|------|
 | `/paper-to-beamer [pdf]` | 论文PDF → Beamer PPT（完整流程） |
 | `/beamer-overflow-fix [file]` | 解析log溢出警告并自动修复 |
+
+---
+
+## Beamer模板规范
+
+**必须遵循的格式（参考 `CAPM_Size_Factor.tex`）：**
+
+```latex
+\documentclass{beamer}
+\usepackage{amsfonts,amsmath}
+\usetheme{nankai}
+
+\usefonttheme[onlymath]{serif}
+\titlebackground*{assets/background}  % 必须设置背景
+
+\title{标题}
+\subtitle{副标题}
+\author{作者}
+\date{日期}
+
+\begin{document}
+
+\maketitle  % 使用 \maketitle，不要用 \titlepage
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+% ... 正文内容 ...
+
+\backmatter  % 使用 \backmatter，不要手动写"谢谢"
+
+\end{document}
+```
+
+**关键点：**
+1. 首页必须用 `\maketitle`（不是 `\begin{frame}\titlepage\end{frame}`）
+2. 必须设置 `\titlebackground*{assets/background}`
+3. 尾页必须用 `\backmatter`（不是手动frame）
+4. `beamerthemenankai.sty` 的 `\ProvidesPackage` 必须是 `beamerthemenankai`
